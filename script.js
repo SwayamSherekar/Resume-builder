@@ -35,6 +35,17 @@ document.getElementById("template").addEventListener("change", (e) => {
   preview.className = "resume " + e.target.value;
 });
 
+// Font change
+document.getElementById("fontSelect").addEventListener("change", (e)=>{
+  document.getElementById("preview").style.fontFamily = e.target.value;
+});
+
+// Heading color
+document.getElementById("headingColor").addEventListener("input", (e)=>{
+  const headings = document.querySelectorAll("#preview h1, #preview h3");
+  headings.forEach(h => h.style.color = e.target.value);
+});
+
 // PDF Download
 downloadBtn.addEventListener("click", () => {
   const { jsPDF } = window.jspdf;
@@ -63,3 +74,4 @@ downloadBtn.addEventListener("click", () => {
 
   doc.save(`${document.getElementById("name").value || "Resume"}.pdf`);
 });
+
