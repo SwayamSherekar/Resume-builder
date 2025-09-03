@@ -3,46 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pro Resume Builder</title>
+  <title>AI-Powered Pro Resume Builder</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-  <header>Pro Resume Builder</header>
+  <header>AI-Powered Pro Resume Builder</header>
 
   <main>
     <section class="form-section">
       <h1>📝 Build Your Resume</h1>
       <form id="resumeForm">
         <label>Name:</label>
-        <input type="text" id="name" required>
+        <input type="text" id="name" placeholder="John Doe" required>
 
         <label>Email:</label>
-        <input type="email" id="email" required>
+        <input type="email" id="email" placeholder="example@mail.com" required>
 
         <label>Phone:</label>
-        <input type="text" id="phone" required>
+        <input type="text" id="phone" placeholder="+91 99999 99999" required>
 
         <label>LinkedIn:</label>
-        <input type="text" id="linkedin">
+        <input type="text" id="linkedin" placeholder="linkedin.com/in/username">
 
         <label>Education:</label>
-        <textarea id="education" rows="3" required></textarea>
+        <textarea id="education" rows="3" placeholder="Your education details" required></textarea>
 
         <label>Experience:</label>
-        <textarea id="experience" rows="3"></textarea>
+        <textarea id="experience" rows="3" placeholder="Your work experience"></textarea>
 
         <label>Skills:</label>
-        <textarea id="skills" rows="2"></textarea>
+        <textarea id="skills" rows="2" placeholder="e.g., JavaScript, Python"></textarea>
 
         <label>Achievements:</label>
-        <textarea id="achievements" rows="2"></textarea>
+        <textarea id="achievements" rows="2" placeholder="Awards, Certifications"></textarea>
 
         <label>Template:</label>
         <select id="template">
           <option value="modern">Modern</option>
           <option value="minimal">Minimal</option>
           <option value="classic">Classic</option>
+        </select>
+
+        <label>Heading Color:</label>
+        <input type="color" id="headingColor" value="#000000">
+
+        <label>Font:</label>
+        <select id="fontSelect">
+          <option value="'Segoe UI', sans-serif">Segoe UI</option>
+          <option value="'Roboto', sans-serif">Roboto</option>
+          <option value="'Lato', sans-serif">Lato</option>
+          <option value="'Times New Roman', serif">Times New Roman</option>
+          <option value="'Poppins', sans-serif">Poppins</option>
         </select>
 
         <button type="button" id="downloadBtn">Download PDF</button>
