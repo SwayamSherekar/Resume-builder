@@ -3,169 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instant Resume Builder</title>
+  <title>Pro Resume Builder</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f9;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
-    header {
-      background: black;
-      color: white;
-      padding: 15px;
-      font-size: 1.5rem;
-    }
-    h1 {
-      margin-top: 20px;
-      color: #333;
-    }
-    form {
-      max-width: 700px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: left;
-    }
-    label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: bold;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      padding: 12px 25px;
-      background: black;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    button:hover {
-      background: #444;
-    }
-    footer {
-      margin-top: 40px;
-      color: #555;
-      font-size: 0.9rem;
-    }
-  </style>
 </head>
 <body>
-  <header>Instant Resume Builder</header>
+  <header>Pro Resume Builder</header>
 
-  <h1>📝 Build Your Resume</h1>
-  <p>Fill the form below and download your professional resume instantly!</p>
+  <main>
+    <section class="form-section">
+      <h1>📝 Build Your Resume</h1>
+      <form id="resumeForm">
+        <label>Name:</label>
+        <input type="text" id="name" required>
 
-  <form id="resumeForm">
-    <label>Name:</label>
-    <input type="text" id="name" required>
+        <label>Email:</label>
+        <input type="email" id="email" required>
 
-    <label>Email:</label>
-    <input type="email" id="email" required>
+        <label>Phone:</label>
+        <input type="text" id="phone" required>
 
-    <label>Phone:</label>
-    <input type="text" id="phone" required>
+        <label>LinkedIn:</label>
+        <input type="text" id="linkedin">
 
-    <label>LinkedIn:</label>
-    <input type="text" id="linkedin">
+        <label>Education:</label>
+        <textarea id="education" rows="3" required></textarea>
 
-    <label>Education:</label>
-    <textarea id="education" rows="3" required></textarea>
+        <label>Experience:</label>
+        <textarea id="experience" rows="3"></textarea>
 
-    <label>Work Experience:</label>
-    <textarea id="experience" rows="3"></textarea>
+        <label>Skills:</label>
+        <textarea id="skills" rows="2"></textarea>
 
-    <label>Skills:</label>
-    <textarea id="skills" rows="2"></textarea>
+        <label>Achievements:</label>
+        <textarea id="achievements" rows="2"></textarea>
 
-    <label>Achievements:</label>
-    <textarea id="achievements" rows="2"></textarea>
+        <label>Template:</label>
+        <select id="template">
+          <option value="modern">Modern</option>
+          <option value="minimal">Minimal</option>
+          <option value="classic">Classic</option>
+        </select>
 
-    <button type="button" onclick="generatePDF()">Download Resume</button>
-  </form>
+        <button type="button" id="downloadBtn">Download PDF</button>
+      </form>
+    </section>
+
+    <section class="preview-section">
+      <h2>Live Preview</h2>
+      <div id="preview" class="resume modern">
+        <h1 id="previewName">Your Name</h1>
+        <p id="previewContact">Email | Phone | LinkedIn</p>
+        <h3>Education</h3>
+        <p id="previewEducation"></p>
+        <h3>Experience</h3>
+        <p id="previewExperience"></p>
+        <h3>Skills</h3>
+        <p id="previewSkills"></p>
+        <h3>Achievements</h3>
+        <p id="previewAchievements"></p>
+      </div>
+    </section>
+  </main>
 
   <footer>
     © 2025 Resume Builder | Made by Swayam Sherekar
   </footer>
 
-  <script>
-    async function generatePDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const phone = document.getElementById("phone").value;
-      const linkedin = document.getElementById("linkedin").value;
-      const education = document.getElementById("education").value;
-      const experience = document.getElementById("experience").value;
-      const skills = document.getElementById("skills").value;
-      const achievements = document.getElementById("achievements").value;
-
-      let y = 20;
-      doc.setFontSize(18);
-      doc.text(name, 10, y);
-      y += 10;
-      doc.setFontSize(12);
-      doc.text(`Email: ${email}`, 10, y);
-      y += 7;
-      doc.text(`Phone: ${phone}`, 10, y);
-      y += 7;
-      if(linkedin) {
-        doc.text(`LinkedIn: ${linkedin}`, 10, y);
-        y += 10;
-      }
-
-      y += 5;
-      doc.setFontSize(14);
-      doc.text("Education:", 10, y);
-      doc.setFontSize(12);
-      y += 7;
-      doc.text(education, 10, y);
-      y += 15;
-
-      if (experience) {
-        doc.setFontSize(14);
-        doc.text("Work Experience:", 10, y);
-        doc.setFontSize(12);
-        y += 7;
-        doc.text(experience, 10, y);
-        y += 15;
-      }
-
-      if (skills) {
-        doc.setFontSize(14);
-        doc.text("Skills:", 10, y);
-        doc.setFontSize(12);
-        y += 7;
-        doc.text(skills, 10, y);
-        y += 15;
-      }
-
-      if (achievements) {
-        doc.setFontSize(14);
-        doc.text("Achievements:", 10, y);
-        doc.setFontSize(12);
-        y += 7;
-        doc.text(achievements, 10, y);
-        y += 15;
-      }
-
-      doc.save(`${name}_Resume.pdf`);
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
