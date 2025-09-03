@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI-Powered Pro Resume Builder</title>
+  <title>Ultimate AI Pro Resume Builder</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 </head>
 <body>
-  <header>AI-Powered Pro Resume Builder</header>
+  <header>Ultimate AI Pro Resume Builder</header>
 
   <main>
     <section class="form-section">
@@ -26,28 +27,6 @@
         <label>LinkedIn:</label>
         <input type="text" id="linkedin" placeholder="linkedin.com/in/username">
 
-        <label>Education:</label>
-        <textarea id="education" rows="3" placeholder="Your education details" required></textarea>
-
-        <label>Experience:</label>
-        <textarea id="experience" rows="3" placeholder="Your work experience"></textarea>
-
-        <label>Skills:</label>
-        <textarea id="skills" rows="2" placeholder="e.g., JavaScript, Python"></textarea>
-
-        <label>Achievements:</label>
-        <textarea id="achievements" rows="2" placeholder="Awards, Certifications"></textarea>
-
-        <label>Template:</label>
-        <select id="template">
-          <option value="modern">Modern</option>
-          <option value="minimal">Minimal</option>
-          <option value="classic">Classic</option>
-        </select>
-
-        <label>Heading Color:</label>
-        <input type="color" id="headingColor" value="#000000">
-
         <label>Font:</label>
         <select id="fontSelect">
           <option value="'Segoe UI', sans-serif">Segoe UI</option>
@@ -57,23 +36,34 @@
           <option value="'Poppins', sans-serif">Poppins</option>
         </select>
 
+        <label>Heading Color:</label>
+        <input type="color" id="headingColor" value="#000000">
+
+        <label>Template:</label>
+        <select id="template">
+          <option value="modern">Modern</option>
+          <option value="minimal">Minimal</option>
+          <option value="classic">Classic</option>
+        </select>
+
+        <button type="button" id="addSectionBtn">Add Section</button>
         <button type="button" id="downloadBtn">Download PDF</button>
+        <button type="button" id="saveBtn">Save Resume</button>
+        <button type="button" id="loadBtn">Load Resume</button>
       </form>
     </section>
 
     <section class="preview-section">
       <h2>Live Preview</h2>
       <div id="preview" class="resume modern">
-        <h1 id="previewName">Your Name</h1>
-        <p id="previewContact">Email | Phone | LinkedIn</p>
-        <h3>Education</h3>
-        <p id="previewEducation"></p>
-        <h3>Experience</h3>
-        <p id="previewExperience"></p>
-        <h3>Skills</h3>
-        <p id="previewSkills"></p>
-        <h3>Achievements</h3>
-        <p id="previewAchievements"></p>
+        <div class="draggable-container" id="sections">
+          <div class="section" data-type="name"><h1 id="previewName">Your Name</h1></div>
+          <div class="section" data-type="contact"><p id="previewContact">Email | Phone | LinkedIn</p></div>
+          <div class="section" data-type="education"><h3>Education</h3><p id="previewEducation"></p></div>
+          <div class="section" data-type="experience"><h3>Experience</h3><p id="previewExperience"></p></div>
+          <div class="section" data-type="skills"><h3>Skills</h3><p id="previewSkills"></p></div>
+          <div class="section" data-type="achievements"><h3>Achievements</h3><p id="previewAchievements"></p></div>
+        </div>
       </div>
     </section>
   </main>
