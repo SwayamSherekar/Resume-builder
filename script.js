@@ -1,3 +1,5 @@
+
+// ===== Resume Builder Logic =====
 const form = document.getElementById("resumeForm");
 const downloadBtn = document.getElementById("downloadBtn");
 const addSectionBtn = document.getElementById("addSectionBtn");
@@ -116,7 +118,7 @@ loadBtn.addEventListener("click", ()=>{
   input.click();
 });
 
-// PDF Download with multi-page support
+// PDF Download
 downloadBtn.addEventListener("click", ()=>{
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -138,4 +140,34 @@ downloadBtn.addEventListener("click", ()=>{
       doc.setFontSize(12);
       const lines = doc.splitTextToSize(content,180);
       lines.forEach(line=>{
-        if(y>
+        if(y>280){
+          doc.addPage();
+          y=20;
+        }
+        doc.text(line,10,y);
+        y+=7;
+      });
+    }
+  });
+  doc.save("resume.pdf");
+});
+
+// ===== AI Subtitle Generator Placeholder =====
+document.getElementById('generateSubBtn').addEventListener('click', function() {
+  const video = document.getElementById('videoInput').files[0];
+  if(!video) {
+    alert("Please upload a video first!");
+    return;
+  }
+  document.getElementById('subtitleOutput').value =
+    "This is a sample subtitle.\nGenerated subtitles will appear here after AI processing.";
+});
+
+// ===== Tab Navigation =====
+function showSection(id){
+  document.getElementById('resume-builder').style.display='none';
+  document.getElementById('subtitles').style.display='none';
+  document.getElementById(id).style.display='block';
+}
+// default
+showSection('resume-builder');
