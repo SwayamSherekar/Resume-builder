@@ -3,16 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ultimate AI Pro Resume Builder</title>
+  <title>Ultimate AI Pro Tools</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 </head>
 <body>
-  <header>Ultimate AI Pro Resume Builder</header>
+  <header>Ultimate AI Pro Tools</header>
+
+  <!-- Navigation Tabs -->
+  <nav class="tab-nav">
+    <button onclick="showSection('resume-builder')">Resume Builder</button>
+    <button onclick="showSection('subtitles')">AI Subtitle Generator</button>
+  </nav>
 
   <main>
-    <section class="form-section">
+    <!-- Resume Builder Section -->
+    <section id="resume-builder" class="form-section">
       <h1>📝 Build Your Resume</h1>
       <form id="resumeForm">
         <label>Name:</label>
@@ -51,25 +58,34 @@
         <button type="button" id="saveBtn">Save Resume</button>
         <button type="button" id="loadBtn">Load Resume</button>
       </form>
+
+      <section class="preview-section">
+        <h2>Live Preview</h2>
+        <div id="preview" class="resume modern">
+          <div class="draggable-container" id="sections">
+            <div class="section" data-type="name"><h1 id="previewName">Your Name</h1></div>
+            <div class="section" data-type="contact"><p id="previewContact">Email | Phone | LinkedIn</p></div>
+            <div class="section" data-type="education"><h3>Education</h3><p id="previewEducation"></p></div>
+            <div class="section" data-type="experience"><h3>Experience</h3><p id="previewExperience"></p></div>
+            <div class="section" data-type="skills"><h3>Skills</h3><p id="previewSkills"></p></div>
+            <div class="section" data-type="achievements"><h3>Achievements</h3><p id="previewAchievements"></p></div>
+          </div>
+        </div>
+      </section>
     </section>
 
-    <section class="preview-section">
-      <h2>Live Preview</h2>
-      <div id="preview" class="resume modern">
-        <div class="draggable-container" id="sections">
-          <div class="section" data-type="name"><h1 id="previewName">Your Name</h1></div>
-          <div class="section" data-type="contact"><p id="previewContact">Email | Phone | LinkedIn</p></div>
-          <div class="section" data-type="education"><h3>Education</h3><p id="previewEducation"></p></div>
-          <div class="section" data-type="experience"><h3>Experience</h3><p id="previewExperience"></p></div>
-          <div class="section" data-type="skills"><h3>Skills</h3><p id="previewSkills"></p></div>
-          <div class="section" data-type="achievements"><h3>Achievements</h3><p id="previewAchievements"></p></div>
-        </div>
-      </div>
+    <!-- AI Subtitle Generator Section -->
+    <section id="subtitles" class="form-section">
+      <h1>🎬 AI Subtitle Generator</h1>
+      <input type="file" id="videoInput" accept="video/*">
+      <button id="generateSubBtn">Generate Subtitles</button>
+      <h3>Output:</h3>
+      <textarea id="subtitleOutput" rows="10" placeholder="Subtitles will appear here..."></textarea>
     </section>
   </main>
 
   <footer>
-    © 2025 Resume Builder | Made by Swayam Sherekar
+    © 2025 Ultimate AI Pro Tools | Made by Swayam Sherekar
   </footer>
 
   <script src="script.js"></script>
